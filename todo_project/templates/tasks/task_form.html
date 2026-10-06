@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card task-card p-4">
+  <h4 class="mb-3">{% if task %}แก้ไขงาน{% else %}เพิ่มงานใหม่{% endif %}</h4>
+  <form method="post">{% csrf_token %}
+    {% for f in form %}
+      <div class="mb-3"><label class="form-label">{{ f.label }}</label>{{ f }}<div class="text-danger small">{{ f.errors }}</div></div>
+    {% endfor %}
+    <small class="text-muted d-block mb-3">ตั้งเวลาแจ้งเตือนได้ ระบบจะส่งเข้า Telegram เมื่อถึงเวลา</small>
+    <button class="btn btn-primary">บันทึก</button>
+    <a href="{% url 'task_list' %}" class="btn btn-light">ยกเลิก</a>
+  </form>
+</div>
+{% endblock %}

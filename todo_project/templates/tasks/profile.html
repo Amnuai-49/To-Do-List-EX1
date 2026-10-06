@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card task-card p-4">
+  <h4>🔔 ผูก Telegram เพื่อรับแจ้งเตือน</h4>
+  <ol class="small text-muted">
+    <li>สร้างบอตกับ <b>@BotFather</b> แล้วตั้งค่า <code>TELEGRAM_BOT_TOKEN</code></li>
+    <li>ส่งข้อความหาบอตของคุณ 1 ครั้ง</li>
+    <li>เปิด <code>https://api.telegram.org/bot&lt;TOKEN&gt;/getUpdates</code> เพื่อดู <code>chat.id</code> แล้วใส่ด้านล่าง</li>
+  </ol>
+  {% if saved %}<div class="alert alert-success py-2">บันทึกแล้ว</div>{% endif %}
+  <form method="post">{% csrf_token %}
+    <label class="form-label">Telegram Chat ID</label>{{ form.telegram_chat_id }}
+    <button class="btn btn-primary mt-3">บันทึก</button>
+  </form>
+</div>
+{% endblock %}
